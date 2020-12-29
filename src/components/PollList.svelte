@@ -1,19 +1,31 @@
 <script>
+  // import { onMount, onDestroy } from 'svelte';
   import PollStore from '../stores/PollStore.js'
   import PollDetails from './PollDetails.svelte'
   
-  export let polls = [];
+  // export let polls = [];
 
-  // Using the store, will update when the data get updated in the store
-  PollStore.subscribe(data => {
-    polls = data;
-  });
+  // // Using the store, will update when the data get updated in the store
+  // const unsub = PollStore.subscribe(data => {
+  //   polls = data;
+  // });
+
+  // onMount(() => {
+  //   console.log('Component is mounted');
+  // });
+
+  // onDestroy(() => {
+  //   console.log('component destroyed');
+  //   unsub();
+  // });
+
+  // Note: Instead of using export and destroy to remove sub, just use $PollStore
 </script>
 
 <div class="poll-list">
-  {#each polls as poll (poll.id)}
+  {#each $PollStore as poll (poll.id)}
     <div>
-      <PollDetails {poll} on:vote/>
+      <PollDetails {poll} />
     </div>
   {/each}
 </div>

@@ -1,6 +1,13 @@
 <script>
+  import PollStore from '../stores/PollStore.js'
   import PollDetails from './PollDetails.svelte'
+  
   export let polls = [];
+
+  // Using the store, will update when the data get updated in the store
+  PollStore.subscribe(data => {
+    polls = data;
+  });
 </script>
 
 <div class="poll-list">
